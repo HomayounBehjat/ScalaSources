@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Visualobjects and/or its affiliates. All rights reserved.
+ * Visualobjects PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
 package co.uk.visualobjects
 
 import java.util.Date
@@ -13,6 +17,26 @@ class Order(val orderItems:ListBuffer[OrderItem], orderDate:Date, orderStatus: O
     */
   def containsAtLeastOneDrink(): Boolean = {
     orderItems.exists(_.foodItem.isInstanceOf[Drink])
+  }
+
+  def total(): Double = {
+    orderItems.foldLeft(0.0)(_ + _.total())
+  }
+
+  /**
+    * Check if this order contains only Cold Solid Foods and drinks but no Hot foods
+    * @return True if this order contains at least one cold solid food.
+    */
+  def containsColdSolidFood(): Boolean = {
+    orderItems.exists(_.foodItem.isInstanceOf[SolidFood]) &&
+      !orderItems.exists(oi => oi.foodItem.isInstanceOf[SolidFood] && !oi.foodItem.isCold)
+  }
+
+  /**
+    * @return True if this order contains at least one hot solid food.
+    */
+  def containsAtLeastOneHotSolidFood(): Boolean = {
+    orderItems.exists(oi => oi.foodItem.isInstanceOf[SolidFood] && !oi.foodItem.isCold)
   }
 
   /**

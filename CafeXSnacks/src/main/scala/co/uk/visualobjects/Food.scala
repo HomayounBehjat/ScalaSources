@@ -1,37 +1,36 @@
+/*
+ * Copyright (c) 2016, Visualobjects and/or its affiliates. All rights reserved.
+ * Visualobjects PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
 package co.uk.visualobjects
 
 /**
   * Created by Homayoun on 23/11/2016.
   */
-abstract class Food(val name: FoodNames.Value, val price: Double, val size: Size.Value, val isCold: Boolean) {
+abstract class Food(val name: FoodNames.Value, val price: Double, val size: Size.Value, val isCold: Boolean, val isDrink:Boolean) {
 
   // There are a diversity of Food behaviour that applies to both Solid Foods
   // and Drinks which can be defined here. For the sake of simpilicity I have
   // not defined any.
 
-  val isDrink:Boolean
 }
 
 class Drink(name: FoodNames.Value, price: Double, size: Size.Value, isCold:Boolean, val isDiet:Boolean)
-    extends Food(name,price,size,isCold) {
-
-  val isDrink: Boolean = true
+    extends Food(name,price,size,isCold, true) {
 }
 
 class SolidFood(name: FoodNames.Value, price: Double, size: Size.Value, isCold:Boolean)
-  extends Food(name,price,size,isCold) {
-  val isDrink: Boolean = false
-
+  extends Food(name,price,size,isCold, false) {
 }
 
 // These objects should ideally be constructed from a database when the application first
 // starts up. I have put them here for the sake of simpilicity.
 
 // Cold Regular Cola
-object ColdRegularCola extends Drink(FoodNames(0),0.50,Size(1),true,false)
+object ColdRegularCola extends Drink(FoodNames.ColdRegularCola,0.50,Size(1),true,false)
 
 // Cold Large Cola
-object ColdLargeCola extends Drink(FoodNames.ColdRegularCola,0.50,Size(2), true, false)
+object ColdLargeCola extends Drink(FoodNames.ColdLargeCola,0.50,Size(2), true, false)
 
 // Cold Regular Orange
 object RegularOrange extends Drink(FoodNames.ColdRegularOrange,0.50,Size(1), true, false)

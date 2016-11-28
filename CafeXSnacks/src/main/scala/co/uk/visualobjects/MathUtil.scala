@@ -5,11 +5,11 @@
 package co.uk.visualobjects
 
 /**
-  * Created by Homayoun on 24/11/2016.
+  * Created by Homayoun on 27/11/2016.
   */
-class OrderItem(val foodItem: Food, val quantity: Int) {
-
-  def total():Double = {
-    quantity * foodItem.price
+object MathUtil {
+  def roundAt(p: Int)(n: Double): Double = {
+    val s = math pow (10, p)
+    (math round n * s) / s
   }
 }
