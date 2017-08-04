@@ -1,4 +1,4 @@
-name := "ShoppingBasket"
+name := "StoreCheckout"
 
 version := "1.0"
 
