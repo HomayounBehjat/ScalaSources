@@ -1,0 +1,1 @@
+This is a a new Repo to hold all my Scala Projects.
